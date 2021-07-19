@@ -1,3 +1,3 @@
 # CabBPSSearch
 
-Search for the same Product on Basspro.com from Cabelas.ca
+Search for the same product on Basspro.com from Cabelas.ca
