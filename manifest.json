@@ -1,0 +1,38 @@
+{
+    "name": "CabBPSSearch",
+    "version": "1.0",
+    "description": "Opens BPS Search",
+    "permissions": [
+        "declarativeContent"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": true
+    },
+    "content_scripts": [{
+        "matches": [
+            "https://www.cabelas.ca/*"
+        ],
+        "run_at": "document_idle",
+        "js": [
+            "inject.js"
+        ]
+    }],
+    "page_action": {
+        "default_icon": {
+            "16": "icons/CabBPSSearch16.png",
+            "32": "icons/CabBPSSearch32.png",
+            "48": "icons/CabBPSSearch48.png",
+            "128": "icons/CabBPSSearch128.png"
+        }
+    },
+    "icons": {
+        "16": "icons/CabBPSSearch16.png",
+        "32": "icons/CabBPSSearch32.png",
+        "48": "icons/CabBPSSearch48.png",
+        "128": "icons/CabBPSSearch128.png"
+    },
+    "manifest_version": 2
+}
