@@ -15,7 +15,7 @@
         "matches": [
             "https://www.cabelas.ca/*"
         ],
-        "run_at": "document_idle",
+        "run_at": "document_end",
         "js": [
             "inject.js"
         ]
