@@ -19,9 +19,8 @@ function inject() {
             let button = document.createElement('button')
             button.id = 'search-button'
 
-            let productName = window.location.href.split('/').pop()
-            productName = productName.split('?')[0]
-            let bpsURL = 'https://www.basspro.com/shop/en/SearchDisplay?categoryId=&searchTerm=' + productName.replaceAll('-', '+')
+            let productName = document.getElementById('productName').innerHTML.replace(/[^a-zA-Z0-9 -]/g, "")
+            let bpsURL = 'https://www.basspro.com/shop/en/SearchDisplay?categoryId=&searchTerm=' + productName.replaceAll(' ', '+')
 
             button.onclick = function openInNewTab() {
                 window.open(bpsURL, '_blank').focus();
