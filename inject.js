@@ -14,7 +14,8 @@
 
 
 function inject() {
-    if (typeof document.getElementsByClassName("product-article")[0] !== "undefined")
+    if (typeof document.getElementsByClassName("product-article")[0] !== "undefined") {
+        //Add search
         if (!document.getElementById('search-button')) {
             let button = document.createElement('button')
             button.id = 'search-button'
@@ -35,4 +36,5 @@ function inject() {
 
             document.getElementsByClassName('productDetails-purchase')[0].prepend(button)
         }
+    }
 }
