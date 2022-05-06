@@ -7,16 +7,25 @@
 
         let body = document.getElementsByTagName("BODY")[0]
 
-        body.addEventListener('mousemove', function() { inject() })
+        body.addEventListener('mousemove', function() {
+            inject()
+        })
     }
-
 })();
 
 
 function inject() {
-    if (typeof document.getElementsByClassName("product-article")[0] !== "undefined") {
-        //Add search
+    if (typeof document.getElementsByClassName("product-article")[0] !== "undefined")
         if (!document.getElementById('search-button')) {
+            //Font
+            let article = document.getElementsByClassName('product-article')[0]
+            if (article.innerHTML.split('B:')[1] === undefined) {
+                article.innerHTML = article.innerHTML.split('B:')[0] + ' B: N/A'
+            } else {
+                article.innerHTML = article.innerHTML.split('B:')[0] + '<span style="font-size: 20px;font-weight: bold;">B:' + article.innerHTML.split('B:')[1] + '</span>'
+            }
+
+            //Search
             let button = document.createElement('button')
             button.id = 'search-button'
 
@@ -36,5 +45,4 @@ function inject() {
 
             document.getElementsByClassName('productDetails-purchase')[0].prepend(button)
         }
-    }
 }
