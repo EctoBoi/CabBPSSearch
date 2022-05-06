@@ -26,15 +26,17 @@ function inject() {
                 article.innerHTML = article.innerHTML.split('B:')[0] + ' B: N/A'
             } else {
                 article.innerHTML = article.innerHTML.split('B:')[0] + '<span style="font-size: 20px;font-weight: bold;margin-left: 4px;">B:' + bpssku + '</span>'
-            }
+                //Copy Button
+	        let copyDiv = document.createElement('div');
+                copyDiv.id = "copyButtonDiv"
+                copyDiv.style.marginLeft = "10px"
 
-	    //Copy Button
-	    let copyDiv = document.createElement('div');
-            copyDiv.id = "copyButtonDiv"
-            copyDiv.style.marginLeft = "10px"
+                document.getElementsByClassName('product-article')[0].appendChild(copyDiv);
+	        copyButtonDiv.innerHTML = `<button id="copySKUButton" value="${bpssku}" onclick="navigator.clipboard.writeText(this.value)">Copy SKU</button>`
+	    }
+	    article.getElementsByTagName("b")[0].innerHTML = article.getElementsByTagName("b")[0].innerHTML + "&nbsp;"
 
-            document.getElementsByClassName('product-article')[0].appendChild(copyDiv);
-	    copyButtonDiv.innerHTML = `<button id="copySKUButton" value="${bpssku}" onclick="navigator.clipboard.writeText(this.value)">Copy SKU</button>`
+	    
 
             //Search
             let button = document.createElement('button')
