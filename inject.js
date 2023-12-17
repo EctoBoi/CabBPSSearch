@@ -81,6 +81,34 @@ function inject() {
       document
         .getElementsByClassName("productDetails-purchase")[0]
         .prepend(createSearchButton(createBPSURL(productName)));
+
+      //Copy Info
+      let pricePrimary =
+        document.getElementsByClassName("product-price")[0].children[0]
+          .innerHTML;
+      pricePrimary = pricePrimary.match(/(\d+.\d+)/g)[0];
+
+      let priceSecondary = "";
+      if (
+        document.getElementsByClassName("product-price")[0].children[1] !==
+        undefined
+      ) {
+        priceSecondary =
+          document.getElementsByClassName("product-price")[0].children[1]
+            .innerHTML;
+        priceSecondary = priceSecondary.match(/(\d+.\d+)/g)[0];
+      }
+
+      document
+        .getElementsByClassName("productDetails-purchase")[0]
+        .prepend(
+          createCopyInfoButton(
+            productName,
+            bpssku,
+            pricePrimary,
+            priceSecondary
+          )
+        );
     }
 }
 
@@ -104,6 +132,48 @@ function createSearchButton(BPSURL) {
   button.style.textTransform = "uppercase";
   button.style.border = "0";
   button.style.padding = "5px 10px";
+
+  return button;
+}
+
+function createCopyInfoButton(
+  productName,
+  bpssku,
+  pricePrimary,
+  priceSecondary
+) {
+  let button = document.createElement("button");
+  button.id = "copy-info-button";
+
+  let info = "";
+  if (priceSecondary === "") {
+    info = productName + "^" + bpssku + "^" + pricePrimary;
+  } else {
+    info =
+      productName + "^" + bpssku + "^" + pricePrimary + "^" + priceSecondary;
+  }
+  button.onclick = function copy() {
+    navigator.clipboard.writeText(info);
+  };
+  button.innerHTML = "Copy Info";
+
+  button.style.marginBottom = "10px";
+  button.style.marginRight = "10px";
+  button.style.backgroundColor = "#ffcb08";
+  button.style.textTransform = "uppercase";
+  button.style.border = "0";
+  button.style.padding = "5px 10px";
+
+  var css = "table td:hover{ background-color: #00ff00 }";
+  var style = document.createElement("style");
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  document.getElementsByTagName("head")[0].appendChild(style);
 
   return button;
 }
