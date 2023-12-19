@@ -64,17 +64,19 @@ function inject() {
       let productName = document.getElementById('productName').innerHTML.replace(/[^a-zA-Z0-9 -]/g, "")
       document.getElementsByClassName('productDetails-purchase')[0].prepend(createSearchButton(createBPSURL(productName)))
 
-			//Copy Info
+      let fullProductName = document.getElementById('productName').innerHTML
+
+      //Copy Info
       let pricePrimary = document.getElementsByClassName('product-price')[0].children[0].innerHTML
       pricePrimary = pricePrimary.match(/(\d+.\d+\.*\d*)/g)[0]
-      
+
       let priceSecondary = ""
-      if (document.getElementsByClassName('product-price')[0].children[1] !== undefined){
+      if (document.getElementsByClassName('product-price')[0].children[1] !== undefined) {
         priceSecondary = document.getElementsByClassName('product-price')[0].children[1].innerHTML
         priceSecondary = priceSecondary.match(/(\d+.\d+\.*\d*)/g)[0]
       }
-      
-      document.getElementsByClassName('productDetails-purchase')[0].prepend(createCopyInfoButton(productName, bpssku, pricePrimary, priceSecondary))
+
+      document.getElementsByClassName('productDetails-purchase')[0].prepend(createCopyInfoButton(fullProductName, bpssku, pricePrimary, priceSecondary))
     }
 }
 
@@ -102,13 +104,13 @@ function createSearchButton(BPSURL) {
 function createCopyInfoButton(productName, bpssku, pricePrimary, priceSecondary) {
   let button = document.createElement('button')
   button.id = 'copy-info-button'
-  
+
   let info = ""
-  if(priceSecondary === ""){
-		info = productName + "^" + bpssku + "^" + pricePrimary
-	}else{
-		info = productName + "^" + bpssku + "^" + pricePrimary + "^" + priceSecondary 
-	}
+  if (priceSecondary === "") {
+    info = productName + "^" + bpssku + "^" + pricePrimary
+  } else {
+    info = productName + "^" + bpssku + "^" + pricePrimary + "^" + priceSecondary
+  }
   button.onclick = function copy() {
     navigator.clipboard.writeText(info)
   }
@@ -121,16 +123,16 @@ function createCopyInfoButton(productName, bpssku, pricePrimary, priceSecondary)
   button.style.border = '0'
   button.style.padding = "5px 10px"
 
-var css = 'table td:hover{ background-color: #00ff00 }';
-var style = document.createElement('style');
+  var css = 'table td:hover{ background-color: #00ff00 }';
+  var style = document.createElement('style');
 
-if (style.styleSheet) {
+  if (style.styleSheet) {
     style.styleSheet.cssText = css;
-} else {
+  } else {
     style.appendChild(document.createTextNode(css));
-}
+  }
 
-document.getElementsByTagName('head')[0].appendChild(style);
+  document.getElementsByTagName('head')[0].appendChild(style);
 
   return button
 }
