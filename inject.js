@@ -98,6 +98,14 @@ function createSearchButton(BPSURL) {
   button.style.border = '0'
   button.style.padding = "5px 10px"
 
+  button.addEventListener('mouseover', () => {
+    button.style.backgroundColor = '#e6b707';
+  });
+
+  button.addEventListener('mouseout', () => {
+    button.style.backgroundColor = '#ffcb08';
+  });
+
   return button
 }
 
@@ -122,6 +130,14 @@ function createCopyInfoButton(productName, bpssku, pricePrimary, priceSecondary)
   button.style.textTransform = 'uppercase'
   button.style.border = '0'
   button.style.padding = "5px 10px"
+
+  button.addEventListener('mouseover', () => {
+    button.style.backgroundColor = '#e6b707';
+  });
+
+  button.addEventListener('mouseout', () => {
+    button.style.backgroundColor = '#ffcb08';
+  });
 
   var css = 'table td:hover{ background-color: #00ff00 }';
   var style = document.createElement('style');
